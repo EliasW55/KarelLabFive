@@ -12,8 +12,41 @@ public class DangerousBot extends Robot
     }
     
     public void choosePile() {
-        
+        pickUpBeepers();
+        if(pickUpBeepers()==true) {
+            turnLeft();
+            move();
+            while(nextToABeeper()) {
+                pickBeeper();
+            }
+        }
+        else {
+            turnRight();
+            move();
+            while(nextToABeeper()) {
+                pickBeeper();
+            }
+        }
     }
-   
-}
+    
 
+    public boolean pickUpBeepers() {
+        int i=0;
+        while(nextToABeeper()) {
+            pickBeeper();
+            ++i;
+        }
+        if(i%2==0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public void turnRight() {
+        turnLeft();
+        turnLeft();
+        turnLeft();
+    }
+}

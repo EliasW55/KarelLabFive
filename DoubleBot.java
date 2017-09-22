@@ -21,9 +21,20 @@ public class DoubleBot extends Robot
         super(st, av, dir, numBeepers);
     }
 
-    public void doubleBeepers()
-    {
-        // put your code here
-        
+    public void doubleBeepers() {
+        move();
+        collectBeepers();
+        move();
+    }
+    
+    public void collectBeepers() {
+        int i=0;
+        while(nextToABeeper()) {
+            pickBeeper();
+            i++;
+        }
+        for(int n=0; n<i*2; i++) {
+            putBeeper();
+        }
     }
 }
